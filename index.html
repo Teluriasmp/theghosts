@@ -29,9 +29,19 @@
       font-size: 24px;
     }
 
-    .resposta-btn {
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 250px;
+      border-radius: 5px;
+      border: none;
+      text-align: center;
+      font-family: 'IM Fell English SC', serif;
+      font-size: 20px;
+    }
+
+    button {
       padding: 10px 20px;
-      margin: 10px;
       background-color: #007BFF;
       color: white;
       border: none;
@@ -39,7 +49,13 @@
       cursor: pointer;
       font-family: 'IM Fell English SC', serif;
       font-size: 20px;
-      width: 150px;
+    }
+
+    #erro {
+      color: red;
+      margin-top: 10px;
+      display: none;
+      font-size: 18px;
     }
 
     #resultado {
@@ -63,23 +79,35 @@
 <body>
 
   <div id="pergunta-container">
-    <h2>Escolha uma opção:</h2>
-    <button class="resposta-btn" onclick="mostrarResultado('A')">A</button>
-    <button class="resposta-btn" onclick="mostrarResultado('B')">B</button>
-    <button class="resposta-btn" onclick="mostrarResultado('C')">C</button>
-    <button class="resposta-btn" onclick="mostrarResultado('D')">D</button>
+    <h2>Digite sua resposta (A, B, C ou D):</h2>
+    <input type="text" id="resposta" placeholder="Digite aqui..." />
+    <br />
+    <button onclick="verificarResposta()">Enviar</button>
+    <p id="erro">Resposta incorreta! Tente novamente.</p>
   </div>
 
   <div id="resultado">coordenadas</div>
 
   <script>
-    function mostrarResultado(opcao) {
+    function normalizarTexto(texto) {
+      return texto
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim()
+        .toUpperCase();
+    }
+
+    function verificarResposta() {
+      const entrada = document.getElementById("resposta").value;
+      const resposta = normalizarTexto(entrada);
+
+      const resultadoEl = document.getElementById("resultado");
       const container = document.getElementById("pergunta-container");
-      const resultado = document.getElementById("resultado");
+      const erro = document.getElementById("erro");
 
       let cor, imagem;
 
-      switch(opcao) {
+      switch (resposta) {
         case "A":
           cor = "red";
           imagem = "url('https://via.placeholder.com/800x600/FF0000/000000?text=A')";
@@ -96,15 +124,25 @@
           cor = "purple";
           imagem = "url('https://via.placeholder.com/800x600/800080/000000?text=D')";
           break;
+        default:
+          erro.style.display = "block";
+          return;
       }
 
-      // Aplica a imagem e cor
-      document.body.style.backgroundImage = imagem;
-      resultado.style.color = cor;
-
+      // Resposta correta
+      erro.style.display = "none";
       container.style.display = "none";
-      resultado.style.display = "block";
+      document.body.style.backgroundImage = imagem;
+      resultadoEl.style.color = cor;
+      resultadoEl.style.display = "block";
     }
+
+    // ⌨️ Tecla Enter envia
+    document.getElementById("resposta").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        verificarResposta();
+      }
+    });
   </script>
 
 </body>
