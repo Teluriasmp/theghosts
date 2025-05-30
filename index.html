@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TSMP</title>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'IM Fell English SC', serif;
+      height: 100vh;
+      margin: 0;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: background-image 0.5s ease-in-out;
+    }
+
+    #pergunta-container {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .resposta-btn {
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'IM Fell English SC', serif;
+      font-size: 20px;
+      width: 150px;
+    }
+
+    #resultado {
+      display: none;
+      font-size: 60px;
+      font-weight: bold;
+      position: relative;
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red, -2px 0 blue; }
+      20% { text-shadow: -2px 0 red, 2px 0 blue; }
+      40% { text-shadow: 2px 2px red, -2px -2px blue; }
+      60% { text-shadow: -2px -2px red, 2px 2px blue; }
+      80% { text-shadow: 2px 0 red, -2px 0 blue; }
+      100% { text-shadow: 0 0 red, 0 0 blue; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="pergunta-container">
+    <h2>Escolha uma opção:</h2>
+    <button class="resposta-btn" onclick="mostrarResultado('A')">A</button>
+    <button class="resposta-btn" onclick="mostrarResultado('B')">B</button>
+    <button class="resposta-btn" onclick="mostrarResultado('C')">C</button>
+    <button class="resposta-btn" onclick="mostrarResultado('D')">D</button>
+  </div>
+
+  <div id="resultado">coordenadas</div>
+
+  <script>
+    function mostrarResultado(opcao) {
+      const container = document.getElementById("pergunta-container");
+      const resultado = document.getElementById("resultado");
+
+      let cor, imagem;
+
+      switch(opcao) {
+        case "A":
+          cor = "red";
+          imagem = "url('https://via.placeholder.com/800x600/FF0000/000000?text=A')";
+          break;
+        case "B":
+          cor = "green";
+          imagem = "url('https://via.placeholder.com/800x600/00FF00/000000?text=B')";
+          break;
+        case "C":
+          cor = "orange";
+          imagem = "url('https://via.placeholder.com/800x600/FFA500/000000?text=C')";
+          break;
+        case "D":
+          cor = "purple";
+          imagem = "url('https://via.placeholder.com/800x600/800080/000000?text=D')";
+          break;
+      }
+
+      // Aplica a imagem e cor
+      document.body.style.backgroundImage = imagem;
+      resultado.style.color = cor;
+
+      container.style.display = "none";
+      resultado.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
