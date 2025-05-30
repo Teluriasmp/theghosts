@@ -110,26 +110,26 @@
       switch (resposta) {
         case "A":
           cor = "red";
-          imagem = "url('https://via.placeholder.com/800x600/FF0000/000000?text=A')";
+          imagem = "url('https://via.placeholder.com/800x600/FF0000/000000?text=Fundo+A')";
           break;
         case "B":
           cor = "green";
-          imagem = "url('https://via.placeholder.com/800x600/00FF00/000000?text=B')";
+          imagem = "url('https://via.placeholder.com/800x600/00FF00/000000?text=Fundo+B')";
           break;
         case "C":
           cor = "orange";
-          imagem = "url('https://via.placeholder.com/800x600/FFA500/000000?text=C')";
+          imagem = "url('https://via.placeholder.com/800x600/FFA500/000000?text=Fundo+C')";
           break;
         case "D":
           cor = "purple";
-          imagem = "url('https://via.placeholder.com/800x600/800080/000000?text=D')";
+          imagem = "url('https://via.placeholder.com/800x600/800080/000000?text=Fundo+D')";
           break;
         default:
           erro.style.display = "block";
           return;
       }
 
-      // Resposta correta
+      // Se resposta estiver correta
       erro.style.display = "none";
       container.style.display = "none";
       document.body.style.backgroundImage = imagem;
@@ -137,7 +137,7 @@
       resultadoEl.style.display = "block";
     }
 
-    // ⌨️ Tecla Enter envia
+    // Tecla Enter também envia
     document.getElementById("resposta").addEventListener("keydown", function(event) {
       if (event.key === "Enter") {
         verificarResposta();
