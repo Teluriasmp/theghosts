@@ -86,7 +86,7 @@
     <p id="erro">Resposta incorreta! Tente novamente.</p>
   </div>
 
-  <div id="resultado">coordenadas</div>
+  <div id="resultado"></div>
 
   <script>
     function normalizarTexto(texto) {
@@ -105,32 +105,38 @@
       const container = document.getElementById("pergunta-container");
       const erro = document.getElementById("erro");
 
-      let cor, imagem;
+      let cor, imagem, textoResultado;
 
       switch (resposta) {
-        case "rosa@s":
+        case "ROSA@S":
           cor = "red";
           imagem = "url('https://i.pinimg.com/736x/59/16/c8/5916c85104d681e7472dc8cfa550a5a5.jpg')";
+          textoResultado = "coordenadas";
           break;
-        case "compan@hia":
+        case "COMPAN@HIA":
           cor = "green";
           imagem = "url('https://i.pinimg.com/736x/44/ba/90/44ba90dade0f6862d79d872abe935727.jpg')";
+          textoResultado = "coordenadas";
           break;
-        case "ir@mã":
+        case "IR@MA":
           cor = "orange";
           imagem = "url('https://via.placeholder.com/800x600/FFA500/000000?text=Fundo+C')";
+          textoResultado = "coordenadas";
           break;
-        case "Tuli@pa":
+        case "TULI@PA":
           cor = "purple";
           imagem = "url('https://via.placeholder.com/800x600/800080/000000?text=Fundo+D')";
+          textoResultado = "coordenadas";
           break;
-        case "Arco íris":
-          cor = "Pink";
+        case "ABACAXI":
+          cor = "pink";
           imagem = "url('https://via.placeholder.com/800x600/800080/000000?text=Fundo+D')";
+          textoResultado = "arco-íris";
           break;
-        case "Quebr@a cabeça":
+        case "GARRAFA":
           cor = "blue";
           imagem = "url('https://via.placeholder.com/800x600/800080/000000?text=Fundo+D')";
+          textoResultado = "quebra-cabeça";
           break;
         default:
           erro.style.display = "block";
@@ -142,6 +148,7 @@
       container.style.display = "none";
       document.body.style.backgroundImage = imagem;
       resultadoEl.style.color = cor;
+      resultadoEl.textContent = textoResultado;
       resultadoEl.style.display = "block";
     }
 
